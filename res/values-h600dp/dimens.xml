@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_height">88dp</dimen>
+    <dimen name="fab_container_height">120dp</dimen>
+</resources>
