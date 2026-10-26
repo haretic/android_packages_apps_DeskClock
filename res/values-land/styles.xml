@@ -28,5 +28,8 @@
         <item name="layout_constraintEnd_toStartOf">@id/fold_vertical_start_edge</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
         <item name="layout_constraintTop_toTopOf">@id/timer_setup_time_top</item>
+        <!-- Sized to fill its half: clear of the screen's edge and of the keys -->
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
     </style>
 </resources>
