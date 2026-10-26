@@ -105,12 +105,14 @@
     <dimen name="checkbox_start_padding">12dp</dimen>
 
     <!-- Floating action button margin -->
-    <dimen name="fab_margin">16dp</dimen>
+    <!-- Short screens, under 600dp tall: a smaller button and bar, clear of a second alarm's
+         card. values-h600dp has the full sizes. -->
+    <dimen name="fab_margin">12dp</dimen>
 
     <!-- Floating action button container height -->
-    <dimen name="fab_height">88dp</dimen>
+    <dimen name="fab_height">64dp</dimen>
 
-    <dimen name="fab_container_height">120dp</dimen>
+    <dimen name="fab_container_height">88dp</dimen>
     <dimen name="fab_container_width">0dp</dimen>
     <dimen name="tab_content_bottom_padding">@dimen/fab_container_height</dimen>
 
