@@ -114,8 +114,36 @@
     <style name="Widget.TimePicker" parent="android:Widget.Material.TimePicker">
         <item name="android:background">?attr/colorSurface</item>
         <item name="android:headerBackground">?attr/colorSurfaceVariant</item>
+        <item name="android:headerTimeTextAppearance">@style/TextAppearance.DeskClock.TimePickerHeader</item>
         <item name="android:numbersBackgroundColor">?attr/colorSurfaceVariant</item>
         <item name="android:numbersSelectorColor">?attr/colorAccent</item>
+    </style>
+
+    <!-- headerTextColor is private; the framework also accepts colors through this public hook. -->
+    <style name="TextAppearance.DeskClock.TimePickerHeader" parent="android:TextAppearance.Material">
+        <item name="android:textColor">@color/time_picker_header_text</item>
+    </style>
+
+    <!-- This is a framework TimePickerDialog, whose action row also holds the keyboard toggle.
+         Give it framework button metrics instead of the activity's Material button styles. -->
+    <style name="ThemeOverlay.DeskClock.TimePicker" parent="android:ThemeOverlay.Material.Dialog">
+        <item name="android:windowBackground">@drawable/popup_background</item>
+        <item name="android:colorAccent">?attr/colorPrimary</item>
+        <item name="android:dialogPreferredPadding">16dp</item>
+        <item name="android:buttonBarButtonStyle">@style/Widget.DeskClock.TimePickerButton</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/Widget.DeskClock.TimePickerButton</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/Widget.DeskClock.TimePickerButton</item>
+        <!-- The activity's AppCompat inflater can replace framework Buttons with MaterialButtons. -->
+        <item name="materialButtonStyle">@style/Widget.DeskClock.TimePickerButton</item>
+    </style>
+
+    <style name="Widget.DeskClock.TimePickerButton" parent="android:Widget.Material.Button.Borderless.Colored">
+        <item name="android:minWidth">64dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="backgroundTint">@null</item>
     </style>
 
     <style name="AlertDialogTheme" parent="@style/ThemeOverlay.AppCompat.Dialog.Alert">
