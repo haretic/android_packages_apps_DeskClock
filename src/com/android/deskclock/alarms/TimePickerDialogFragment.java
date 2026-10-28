@@ -21,6 +21,9 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -55,7 +58,21 @@ public class TimePickerDialogFragment extends DialogFragment {
         final Context context = getActivity();
         return new TimePickerDialog(context, (view, hourOfDay, minute1) ->
                 listener.onTimeSet(hourOfDay, minute1),
-                hour, minute, DateFormat.is24HourFormat(context));
+                hour, minute, DateFormat.is24HourFormat(context)) {
+            @Override
+            public void setView(View view) {
+                // TimePickerDialog supplies its picker through setView during construction.
+                // Wrap it before AlertDialog binds the buttons inside the picker, so the native
+                // landscape layout and input validation survive and focus can scroll to controls
+                // below the fold in short windows or with large fonts.
+                final ScrollView scrollView = new ScrollView(view.getContext());
+                scrollView.setFocusable(false);
+                scrollView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                scrollView.addView(view, new ScrollView.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                super.setView(scrollView);
+            }
+        };
     }
 
     public static void show(Fragment fragment) {
