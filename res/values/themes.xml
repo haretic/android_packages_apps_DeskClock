@@ -37,7 +37,7 @@
         <item name="snackbarStyle">@style/SnackBarStyle</item>
         <item name="snackbarButtonStyle">@style/SnackBarButtonStyle</item>
         <item name="snackbarTextViewStyle">@style/SnackBarTextStyle</item>
-        <item name="actionBarSize">64dp</item>
+        <item name="actionBarSize">48dp</item>
     </style>
 
     <style name="Theme.DeskClock.Settings">
