@@ -21,6 +21,9 @@
         <item name="layout_constraintEnd_toEndOf">parent</item>
         <item name="layout_constraintStart_toEndOf">@id/fold_vertical_end_edge</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
+        <!-- Beside the time the keys keep a keypad's shape; upright they take the width -->
+        <item name="layout_constraintDimensionRatio">3:4</item>
+        <item name="layout_constraintWidth_max">315dp</item>
     </style>
 
     <style name="TimerSetupTime">
