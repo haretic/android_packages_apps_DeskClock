@@ -92,7 +92,8 @@
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetRight">0dp</item>
         <item name="android:textSize">36sp</item>
-        <item name="android:layout_margin">2.0dip</item>
+        <!-- A gap the eye reads between keys, as wide pills or circles -->
+        <item name="android:layout_margin">4dp</item>
         <item name="android:padding">0dp</item>
         <!-- The expressive button's own start and end padding wins over padding: on keys as
              small as a short screen's, it left the digits a sliver and clipped them -->
