@@ -73,7 +73,6 @@ public final class AlarmClockFragment extends DeskClockFragment implements
     public static final String SCROLL_TO_ALARM_INTENT_EXTRA = "deskclock.scroll.to.alarm";
 
     private static final String KEY_EXPANDED_ID = "expandedId";
-    private static final String KEY_RECREATED = "recreated";
 
     // Updates "Today/Tomorrow" in the UI when midnight passes.
     private final Runnable mMidnightUpdater = new MidnightRunnable();
@@ -94,8 +93,6 @@ public final class AlarmClockFragment extends DeskClockFragment implements
     private EmptyViewController mEmptyViewController;
     private AlarmTimeClickHandler mAlarmTimeClickHandler;
     private LinearLayoutManager mLayoutManager;
-    /** Made anew for a rotation or other configuration change: an open picker stays. */
-    private boolean mRecreated;
 
     /**
      * The public no-arg constructor required by all fragments.
@@ -110,7 +107,6 @@ public final class AlarmClockFragment extends DeskClockFragment implements
         mCursorLoader = (CursorLoader) LoaderManager.getInstance(this).initLoader(0, null, this);
         if (savedState != null) {
             mExpandedAlarmId = savedState.getLong(KEY_EXPANDED_ID, Alarm.INVALID_ID);
-            mRecreated = savedState.getBoolean(KEY_RECREATED);
         }
     }
 
@@ -255,11 +251,11 @@ public final class AlarmClockFragment extends DeskClockFragment implements
 
         // Don't show the picker after resuming, so we don't need to remember what time we edited
         // last (and the user maybe also doesn't remember then, editing the wrong alarm); a
-        // rotation isn't leaving, so the picker stays through it
-        if (!mRecreated) {
+        // rotation isn't leaving, so the picker stays through it. It is the instance going away
+        // that pauses, so it asks the activity, not its saved state
+        if (!requireActivity().isChangingConfigurations()) {
             TimePickerDialogFragment.removeTimeEditDialog(getChildFragmentManager());
         }
-        mRecreated = false;
     }
 
     @Override
@@ -272,7 +268,6 @@ public final class AlarmClockFragment extends DeskClockFragment implements
         super.onSaveInstanceState(outState);
         mAlarmTimeClickHandler.saveInstance(outState);
         outState.putLong(KEY_EXPANDED_ID, mExpandedAlarmId);
-        outState.putBoolean(KEY_RECREATED, requireActivity().isChangingConfigurations());
     }
 
     @Override
