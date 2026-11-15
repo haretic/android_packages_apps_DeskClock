@@ -252,6 +252,8 @@
     </style>
 
     <style name="TextAppearance.DigitalAppWidget.TextClockPrimary" parent="TextAppearance.DigitalAppWidget">
+        <!-- haretic's display face where a device has one, sans-serif where not -->
+        <item name="android:fontFamily">haretic-display</item>
         <item name="android:textSize">@dimen/big_font_size</item>
         <item name="android:textColor">?attr/colorPrimaryContainer</item>
         <item name="android:fontFeatureSettings">pnum</item>
